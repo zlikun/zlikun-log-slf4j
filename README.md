@@ -4,6 +4,7 @@
 
 #### 参考资料
 - <http://www.slf4j.org/manual.html>
+- <https://logback.qos.ch/manual/>
 - SLF4J在日志体系中的位置
 ![SLF4J在日志体系中的位置](http://www.slf4j.org/images/concrete-bindings.png)
 - SLF4J Bridging legacy APIs
@@ -48,3 +49,4 @@ private StaticLoggerBinder() {
 
 #### 工程清单
 - zlikun-log-slf4j-simple `slf4j-api`简易实现，通常用作测试时使用
+- zlikun-log-slf4j-logback `slf4j-api`正式实现

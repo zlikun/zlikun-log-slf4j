@@ -1,0 +1,3 @@
+dependencies {
+    compile group: "ch.qos.logback", name: "logback-classic", version: "${logbackVersion}"
+}

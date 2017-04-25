@@ -1,2 +1,3 @@
 include 'zlikun-log-slf4j-simple'
+include 'zlikun-log-slf4j-logback'
 

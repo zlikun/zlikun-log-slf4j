@@ -6,6 +6,7 @@ configure(allprojects) { project ->
     ext.junitVersion           = "4.12"
     ext.servletVersion         = "3.1.0"
     ext.slf4jVersion           = "1.7.25"
+    ext.logbackVersion         = "1.2.3"
 
     ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
 
