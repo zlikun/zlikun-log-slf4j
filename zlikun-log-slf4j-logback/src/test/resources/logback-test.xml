@@ -13,4 +13,9 @@
 
 	<logger name="com.zlikun.log" level="DEBUG" />
 
+	<!-- 测试Logger继承关系 -->
+	<logger name="x" level="INFO" />
+	<logger name="x.y" level="DEBUG" />
+	<logger name="x.y.z" level="WARN" />
+
 </configuration>

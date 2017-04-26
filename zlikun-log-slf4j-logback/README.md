@@ -7,6 +7,9 @@
 - logback-classic Logback与Slf4j对接，是其完整实现
 - logback-access Logback与Servlet容器集成提供通过Http来访问日志的功能
 
+#### 架构说明
+Logback主要由Logger、Appenders、Layouts三部分组成。所有的Logger共享一个LoggerContext实例，且Logger名称大小写敏感。Logger父级与子级存在继承关系，子级Logger会继承父级的配置(通过`.`或`$`分隔)，未指定级别的Logger将使用其最近父级日志级别，根为root。
+
 #### 源码解析
 - ch.qos.logback.classic.LoggerContext (org.slf4j.ILoggerFactory 在Logback中的实现类)
 ```
