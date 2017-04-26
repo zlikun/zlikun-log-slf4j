@@ -8,7 +8,9 @@
 - logback-access Logback与Servlet容器集成提供通过Http来访问日志的功能
 
 #### 架构说明
-Logback主要由Logger、Appenders、Layouts三部分组成。所有的Logger共享一个LoggerContext实例，且Logger名称大小写敏感。Logger父级与子级存在继承关系，子级Logger会继承父级的配置(通过`.`或`$`分隔)，未指定级别的Logger将使用其最近父级日志级别，根为root。
+Logback主要由Logger、Appenders、Layouts三部分组成。所有的Logger共享一个LoggerContext实例，且Logger名称大小写敏感。Logger父级与子级存在继承关系，子级Logger会继承父级的配置(通过`.`或`$`分隔)，未指定级别的Logger将使用其最近父级日志级别，根为root。配置文件中的Logger将在程序启动时即初始化，其日志级别如不指定也将使用父级Logger级别。  
+日志的输出目标被称作`appender`，Currently, appenders exist for the console, files, remote socket servers, to MySQL, PostgreSQL, Oracle and other databases, JMS, and remote UNIX Syslog daemons。同一个Logger可以被指定多个Appender。Appender通过`Additivity`属性控制Logger输出目标是否叠加，如为false，表示仅向当前Appender输出。  
+![Under The Hood Sequence Diagram](https://logback.qos.ch/manual/images/chapters/architecture/underTheHoodSequence2.gif)
 
 #### 源码解析
 - ch.qos.logback.classic.LoggerContext (org.slf4j.ILoggerFactory 在Logback中的实现类)
