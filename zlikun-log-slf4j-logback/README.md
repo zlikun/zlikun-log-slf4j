@@ -2,6 +2,11 @@
 - <https://logback.qos.ch/manual/introduction.html>
 - <https://logback.qos.ch/manual/architecture.html>
 
+#### 模块说明
+- logback-core Logback核心实现
+- logback-classic Logback与Slf4j对接，是其完整实现
+- logback-access Logback与Servlet容器集成提供通过Http来访问日志的功能
+
 #### 源码解析
 - ch.qos.logback.classic.LoggerContext (org.slf4j.ILoggerFactory 在Logback中的实现类)
 ```
@@ -52,5 +57,30 @@ if (contextSelectorStr == null) {
 public ILoggerFactory getLoggerFactory() {
     ...
     return contextSelectorBinder.getContextSelector().getLoggerContext();
+}
+
+// getSingleton() 是Slf4j的硬性要求，必须遵守(如果需要自定义实现)
+public static StaticLoggerBinder getSingleton() {
+    return SINGLETON;
+}
+
+// ch.qos.logback.classic.LoggerContext 构造方法(观察默认实例的属性)
+public LoggerContext() {
+    // ch.qos.logback.core.ContextBase 填充 objectMap
+    super();
+    // 使用ConcurrentHashMap缓存Logger实例，避免Logger实例过多
+    this.loggerCache = new ConcurrentHashMap<String, Logger>();
+
+    this.loggerContextRemoteView = new LoggerContextVO(this);
+    // Logger.ROOT_LOGGER_NAME = "ROOT"，初始化根Logger
+    this.root = new Logger(Logger.ROOT_LOGGER_NAME, null, this);
+    // 设置根Logger默认日志级别为DEBUG级别
+    this.root.setLevel(Level.DEBUG);
+    // 缓存根Logger
+    loggerCache.put(Logger.ROOT_LOGGER_NAME, root);
+    initEvaluatorMap();
+    // 初始化Logger计数器
+    size = 1;
+    this.frameworkPackages = new ArrayList<String>();
 }
 ```
