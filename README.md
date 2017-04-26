@@ -5,13 +5,14 @@
 #### 参考资料
 - <http://www.slf4j.org/manual.html>
 - <https://logback.qos.ch/manual/>
+- <https://coding.net/u/likun/p/zlikun-log/git/tree/master>
 - SLF4J在日志体系中的位置
 ![SLF4J在日志体系中的位置](http://www.slf4j.org/images/concrete-bindings.png)
 - SLF4J Bridging legacy APIs
 ![SLF4J Bridging legacy APIs](http://www.slf4j.org/images/legacy.png)
 
 #### 日志实现绑定机制
-```java
+```
 // Logger工程(Logger实例生成入口)
 // org.slf4j.LoggerFactory#getLogger()
 // 下面是其关键实现代码
