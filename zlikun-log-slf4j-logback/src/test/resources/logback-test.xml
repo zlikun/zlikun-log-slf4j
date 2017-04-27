@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true" scan="true" scanPeriod="3 seconds">
+<!-- 参考：ch.qos.logback.classic.joran.action.ConfigurationAction -->
+<!-- scan / scanPeriod 配合配置开启定时更新配置文件机制，周期单位取值：(|milli(second)?|second(e)?|minute|hour|day)s? -->
+<!-- debug="true" 用于输出Logback状态信息，开启该配置效果相当于在configuration节点下加如下配置： -->
+<!-- https://logback.qos.ch/manual/configuration.html#statusListener -->
+<!--
+<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+-->
+<configuration debug="false" scan="true" scanPeriod="3 seconds">
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder charset="UTF-8">
-			<pattern>%d{yyyy/MM/dd HH:mm:ss} | %t | %level | %logger | %msg%n</pattern>
+	<!-- https://logback.qos.ch/manual/configuration.html#contextListener -->
+	<!--
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+	-->
+
+	<!-- https://logback.qos.ch/manual/configuration.html#insertFromJNDI -->
+	<!-- 通过JNDI插入变量 -->
+	<!-- <insertFromJNDI env-entry-name="java:comp/env/appName" as="appName" /> -->
+	<!-- <contextName>${appName}</contextName> -->
+
+	<!-- https://logback.qos.ch/manual/configuration.html#contextName -->
+	<!-- 可以在pattern中引用该配置：%contextName，变量%contextName默认值：default -->
+	<contextName>zlikun-log</contextName>
+
+	<!-- https://logback.qos.ch/manual/configuration.html#variableSubstitution -->
+	<!-- 定义变量，可供后面节点引用 -->
+	<!-- 也可以通过命令行指定：java -DUSER_HOME="/data" MyApp -->
+	<property name="USER_HOME" value="/data" />
+
+	<!-- https://logback.qos.ch/manual/configuration.html#scopes -->
+	<!-- A property can be defined for insertion in local scope, in context scope, or in system scope. Local scope is the default. -->
+	<property scope="context" name="node" value="simple" />
+
+	<!-- https://logback.qos.ch/manual/configuration.html#defaultValuesForVariables -->
+	<!-- 可以通过.properties文件引入变量 -->
+	<property file="src/test/resources/logback.properties" />
+
+	<!-- https://logback.qos.ch/manual/configuration.html#timestamp -->
+	<!-- https://logback.qos.ch/manual/appenders.html#uniquelyNamed -->
+	<!-- 定时时间类型变量，指定时间格式 -->
+	<timestamp key="bySecond" datePattern="yyyy-MM-dd_HH-mm"/>
+
+	<!-- https://logback.qos.ch/manual/configuration.html#fileInclusion -->
+	<!-- 引入其它文件，可引入本地文件也可通过URL引入远程文件，引入的文件必须包含included节点 -->
+	<!-- <include file="src/test/java/logback-ext.xml"/> -->
+	<!-- <include url="http://hostname/logback-ext.xml"/> -->
+
+	<!-- 输出到文件 -->
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<!-- ${path_${os}} 使用嵌套变量表示 -->
+		<!-- /data/simple/1.0.0/win/server-2017-04-27_15-09.log -->
+		<file>${USER_HOME}/${node}/${version}/${path_${os}}/server-${bySecond}.log</file>
+		<encoder>
+			<pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | %msg%n</pattern>
 		</encoder>
 	</appender>
-	
+
+	<!-- https://logback.qos.ch/manual/configuration.html#conditional -->
+	<!-- 条件语句，HOSTNAME为系统变量，可直接使用 -->
+	<!--
+	<if condition='property("HOSTNAME").contains("torino")'>
+		<then>
+			<appender name="CON" class="ch.qos.logback.core.ConsoleAppender">
+				<encoder>
+					<pattern>%d %-5level %logger{35} - %msg %n</pattern>
+				</encoder>
+			</appender>
+			<root>
+				<appender-ref ref="CON" />
+			</root>
+		</then>
+		<else>
+		  ...
+		</else>
+	</if>
+	-->
+
+	<!-- 输出到控制台 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder charset="UTF-8">
+			<pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 根Logger配置 -->
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</root>
 
+	<!-- 子Logger配置 -->
 	<!-- 配置文件中的Logger将在程序启动时即初始化，additivity属性控制Appender是否叠加使用，false表示仅向当前Appender输出 -->
 	<logger name="com.zlikun.log" level="DEBUG" additivity="true" />
 
@@ -18,5 +99,11 @@
 	<logger name="x" level="INFO" />
 	<logger name="x.y" level="DEBUG" />
 	<logger name="x.y.z" level="WARN" />
+
+	<!-- https://logback.qos.ch/manual/configuration.html#shutdownHook -->
+	<!-- https://logback.qos.ch/manual/configuration.html#webShutdownHook -->
+	<!-- 通过shutdown hook停止LoggerContext，有一定延迟 -->
+	<!-- in the absence of the class attribute, assume ch.qos.logback.core.hook.DelayingShutdownHook -->
+	<shutdownHook/>
 
 </configuration>
