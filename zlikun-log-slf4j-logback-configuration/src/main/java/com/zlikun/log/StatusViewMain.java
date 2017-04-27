@@ -44,6 +44,9 @@ public class StatusViewMain {
         server.join();
     }
 
+    /**
+     * 字符集过滤器
+     */
     public static final class EncodingFilter implements Filter {
 
         @Override

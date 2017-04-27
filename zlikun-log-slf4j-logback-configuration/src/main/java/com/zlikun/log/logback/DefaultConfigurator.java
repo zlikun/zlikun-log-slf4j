@@ -22,7 +22,7 @@ public class DefaultConfigurator extends ContextAwareBase implements Configurato
     @Override
     public void configure(LoggerContext lc) {
 
-        addInfo("使用SPI机制加载类实现日志配置");
+        addInfo("使用SPI机制加载配置类实现日志配置");
 
         lc.setName("");
 
