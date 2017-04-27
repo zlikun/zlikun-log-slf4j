@@ -14,7 +14,12 @@ Logback主要由Logger、Appenders、Layouts三部分组成。所有的Logger共
 ![Under The Hood Sequence Diagram](https://logback.qos.ch/manual/images/chapters/architecture/underTheHoodSequence2.gif)
 
 #### 配置
-
+Logback配置文件加载顺序
+1. Logback tries to find a file called logback-test.xml in the classpath
+2. If no such file is found, logback tries to find a file called logback.groovy in the classpath
+3. If no such file is found, it checks for the file logback.xml in the classpath
+4. ...
+5. 如果以上都不成功，使用默认配置：ch.qos.logback.classic.BasicConfigurator，内部使用`ConsoleAppender`和`LayoutWrappingEncoder`、`TTLLLayout`配置日志
 
 #### 源码
 - ch.qos.logback.classic.LoggerContext (org.slf4j.ILoggerFactory 在Logback中的实现类)
