@@ -40,4 +40,12 @@ public class UsageTest {
 
     }
 
+    @Test
+    public void error() {
+
+        Logger log = LoggerFactory.getLogger(UsageTest.class) ;
+        log.error("打印异常堆栈信息!" ,new IllegalArgumentException());
+
+    }
+
 }
