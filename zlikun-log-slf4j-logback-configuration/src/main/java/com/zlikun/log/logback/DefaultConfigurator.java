@@ -24,7 +24,7 @@ public class DefaultConfigurator extends ContextAwareBase implements Configurato
 
         addInfo("使用SPI机制加载配置类实现日志配置");
 
-        lc.setName("");
+        lc.setName("zlikun-log");
 
         // ConsoleAppender 日志将输出到控制台
         ConsoleAppender<ILoggingEvent> ca = new ConsoleAppender<ILoggingEvent>();
