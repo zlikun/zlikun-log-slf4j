@@ -44,7 +44,7 @@
 
 	<!-- https://logback.qos.ch/manual/configuration.html#fileInclusion -->
 	<!-- 引入其它文件，可引入本地文件也可通过URL引入远程文件，引入的文件必须包含included节点 -->
-	<!-- <include file="src/test/java/logback-ext.xml"/> -->
+	<include file="src/test/resources/logback-ext.xml"/>
 	<!-- <include url="http://hostname/logback-ext.xml"/> -->
 
 	<!-- 输出到文件 -->
