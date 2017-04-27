@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-    <appender name="includedConsole" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="INCLUDED_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>"%d - %m%n"</pattern>
+            <pattern>%d{HH:mm:ss.SSS} | %contextName | %t | %level | %logger | %msg%n</pattern>
         </encoder>
     </appender>
 </included>
