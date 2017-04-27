@@ -35,7 +35,10 @@
 
 	<!-- https://logback.qos.ch/manual/configuration.html#defaultValuesForVariables -->
 	<!-- 可以通过.properties文件引入变量 -->
-	<property file="src/test/resources/logback.properties" />
+	<!-- file 属性通过本地文件方式加载 -->
+	<!-- <property file="src/test/resources/logback.properties" /> -->
+	<!-- resource 以ClassLoader加载 -->
+	<property resource="logback.properties" />
 
 	<!-- https://logback.qos.ch/manual/configuration.html#timestamp -->
 	<!-- https://logback.qos.ch/manual/appenders.html#uniquelyNamed -->
@@ -44,7 +47,9 @@
 
 	<!-- https://logback.qos.ch/manual/configuration.html#fileInclusion -->
 	<!-- 引入其它文件，可引入本地文件也可通过URL引入远程文件，引入的文件必须包含included节点 -->
-	<include file="src/test/resources/logback-ext.xml"/>
+	<!-- 可选引用文件属性：file、url、resource -->
+	<include resource="logback-ext.xml"/>
+	<!-- <include file="src/test/resources/logback-ext.xml"/> -->
 	<!-- <include url="http://hostname/logback-ext.xml"/> -->
 
 	<!-- 输出到文件 -->
