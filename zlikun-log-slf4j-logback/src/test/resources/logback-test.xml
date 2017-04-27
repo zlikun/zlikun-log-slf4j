@@ -6,7 +6,7 @@
 <!--
 <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
 -->
-<configuration debug="false" scan="true" scanPeriod="3 seconds">
+<configuration debug="true" scan="true" scanPeriod="3 seconds">
 
 	<!-- https://logback.qos.ch/manual/configuration.html#contextListener -->
 	<!--
@@ -104,8 +104,8 @@
 
 	<!-- https://logback.qos.ch/manual/configuration.html#shutdownHook -->
 	<!-- https://logback.qos.ch/manual/configuration.html#webShutdownHook -->
-	<!-- 通过shutdown hook停止LoggerContext，有一定延迟 -->
+	<!-- 通过shutdown hook停止LoggerContext，需要指定ShutdownHook的实现类 -->
 	<!-- in the absence of the class attribute, assume ch.qos.logback.core.hook.DelayingShutdownHook -->
-	<shutdownHook/>
+	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
 
 </configuration>
