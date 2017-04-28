@@ -12,11 +12,8 @@ public class FileAppenderTest {
 
     @Test
     public void append() {
-
         Logger log = LoggerFactory.getLogger(FileAppenderTest.class) ;
-
         log.info("输出日志到文件");
-
     }
 
 }
