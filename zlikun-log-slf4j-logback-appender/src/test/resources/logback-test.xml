@@ -122,6 +122,14 @@
 		<appender-ref ref="FILE" />
 	</appender>
 
+	<appender name="COUNTING_STDOUT" class="com.zlikun.log.logback.CountingConsoleAppender">
+		<limit>10</limit>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | %msg%n</pattern>
+		</encoder>
+	</appender>
+
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>
@@ -140,6 +148,9 @@
 	</logger>
 	<logger name="com.zlikun.log.AsyncAppenderTest" level="DEBUG" additivity="false">
 		<appender-ref ref="ASYNC_FILE" />
+	</logger>
+	<logger name="com.zlikun.log.CountingConsoleAppenderTest" level="DEBUG" additivity="false">
+		<appender-ref ref="COUNTING_STDOUT" />
 	</logger>
 
 	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />

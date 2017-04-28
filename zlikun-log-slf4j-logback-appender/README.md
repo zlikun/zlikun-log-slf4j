@@ -146,8 +146,13 @@
 </appender>
 ```
 - [WriteYourOwnAppender](https://logback.qos.ch/manual/appenders.html#WriteYourOwnAppender)
-
-#### Appender使用
-```
-
+```xml
+<!-- 自定义Appender -->
+<appender name="COUNTING_STDOUT" class="com.zlikun.log.logback.CountingConsoleAppender">
+    <limit>10</limit>
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | %msg%n</pattern>
+    </encoder>
+</appender>
 ```
