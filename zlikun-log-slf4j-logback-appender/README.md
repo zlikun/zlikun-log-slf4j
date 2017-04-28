@@ -94,6 +94,40 @@
     </encoder>
 </appender>
 ```
+- [DBAppender](https://logback.qos.ch/manual/appenders.html#DBAppender)
+```xml
+<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    <!-- 配套SQL脚本文件于下面目录中存放 -->
+    <!-- logback/logback-classic/src/main/resources/ch/qos/logback/classic/db/script -->
+    <!--
+    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+        <driverClass>com.mysql.jdbc.Driver</driverClass>
+        <url>jdbc:mysql://192.168.9.223:3306/test</url>
+        <user>root</user>
+        <password>ablejava</password>
+    </connectionSource>
+    -->
+    <!-- 使用连接池 -->
+    <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+        <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <jdbcUrl>jdbc:mysql://192.168.9.223:3306/test</jdbcUrl>
+            <user>root</user>
+            <password>ablejava</password>
+            <initialPoolSize>10</initialPoolSize>
+            <minPoolSize>10</minPoolSize>
+            <maxPoolSize>30</maxPoolSize>
+            <maxIdleTime>30</maxIdleTime>
+        </dataSource>
+    </connectionSource>
+</appender>
+```
+- [SocketAppender](https://logback.qos.ch/manual/appenders.html#SocketAppender)
+- [SMTPAppender](https://logback.qos.ch/manual/appenders.html#SMTPAppender)
+- [SyslogAppender](https://logback.qos.ch/manual/appenders.html#SyslogAppender)
+- [SiftingAppender](https://logback.qos.ch/manual/appenders.html#SiftingAppender)
+- [AsyncAppender](https://logback.qos.ch/manual/appenders.html#AsyncAppender)
+- [WriteYourOwnAppender](https://logback.qos.ch/manual/appenders.html#WriteYourOwnAppender)
 
 #### Appender使用
 ```

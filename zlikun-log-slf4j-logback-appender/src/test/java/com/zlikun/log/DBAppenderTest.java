@@ -6,14 +6,12 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @auther zlikun <zlikun-dev@hotmail.com>
- * @date 2017/4/28 11:38
+ * @date 2017/4/28 16:42
  */
-public class ConsoleAppenderTest {
-
+public class DBAppenderTest {
     @Test
     public void append() {
-        Logger log = LoggerFactory.getLogger(ConsoleAppenderTest.class) ;
-        log.info("输出日志到控制台");
+        Logger log = LoggerFactory.getLogger(DBAppenderTest.class) ;
+        log.info("输出日志到DB");
     }
-
 }
