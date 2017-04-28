@@ -79,6 +79,32 @@
 		</encoder>
 	</appender>
 
+	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+		<!-- 配套SQL脚本文件于下面目录中存放 -->
+		<!-- logback/logback-classic/src/main/resources/ch/qos/logback/classic/db/script -->
+		<!--
+		<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+			<driverClass>com.mysql.jdbc.Driver</driverClass>
+			<url>jdbc:mysql://192.168.9.223:3306/test</url>
+			<user>root</user>
+			<password>ablejava</password>
+		</connectionSource>
+		-->
+		<!-- 使用连接池 -->
+		<connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+			<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<driverClass>com.mysql.jdbc.Driver</driverClass>
+				<jdbcUrl>jdbc:mysql://192.168.9.223:3306/test</jdbcUrl>
+				<user>root</user>
+				<password>ablejava</password>
+				<initialPoolSize>10</initialPoolSize>
+				<minPoolSize>10</minPoolSize>
+				<maxPoolSize>30</maxPoolSize>
+				<maxIdleTime>30</maxIdleTime>
+			</dataSource>
+		</connectionSource>
+	</appender>
+
 	<appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
 		<!-- 阻塞式队列最大长度，默认：256，取值范围为正整数，队列默认实现：ArrayBlockingQueue -->
 		<queueSize>128</queueSize>
@@ -117,9 +143,9 @@
 	<logger name="com.zlikun.log.RollingFileAppenderTest" level="DEBUG" additivity="false">
 		<appender-ref ref="ROLLING_FILE" />
 	</logger>
-	<!--<logger name="com.zlikun.log.DBAppenderTest" level="DEBUG" additivity="false">-->
-		<!--<appender-ref ref="DB" />-->
-	<!--</logger>-->
+	<logger name="com.zlikun.log.DBAppenderTest" level="DEBUG" additivity="false">
+		<appender-ref ref="DB" />
+	</logger>
 	<logger name="com.zlikun.log.AsyncAppenderTest" level="DEBUG" additivity="false">
 		<appender-ref ref="ASYNC_FILE" />
 	</logger>
