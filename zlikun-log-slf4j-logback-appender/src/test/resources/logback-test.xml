@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="3 seconds">
+
+	<contextName>zlikun-log</contextName>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 指定输出流，默认：System.out，这里修改为：System.err，允许取值参考：ch.qos.logback.core.joran.spi.ConsoleTarget -->
+		<target>System.err</target>
+		<!-- 默认Encoder：ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<!-- 测试发现：未在Action中解析的属性，应在子标签中设定才能生效 -->
+			<charset>UTF-8</charset>
+			<!-- ch.qos.logback.classic.PatternLayout -->
+			<pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<!-- 设置日志文件路径(只能设置为本地文件路径) -->
+		<!-- 绝对路径 -->
+		<!-- <file>/data/simple/server.log</file> -->
+		<!-- 相对路径，相对于当前工程根目录 -->
+		<file>build/data/server.log</file>
+		<!-- 设置IO缓冲区，取值单位参考：ch.qos.logback.core.util.FileSize，该设置默认值：8kb -->
+		<bufferSize>32 kb</bufferSize>
+		<!-- 设置文件写入方式是否追加，默认：true，false表示每次都清空上次写入 -->
+		<append>false</append>
+		<!-- 于#start()方法中使用，用于强制append = true，并输出警告，默认：false(不启用) -->
+		<prudent>true</prudent>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger name="com.zlikun.log.ConsoleAppenderTest" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="com.zlikun.log.FileAppenderTest" level="DEBUG" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
+
+</configuration>

@@ -1,4 +1,4 @@
 include 'zlikun-log-slf4j-simple'
 include 'zlikun-log-slf4j-logback'
 include 'zlikun-log-slf4j-logback-configurator'
-
+include 'zlikun-log-slf4j-logback-appender'
