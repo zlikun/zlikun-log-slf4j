@@ -127,6 +127,24 @@
 - [SyslogAppender](https://logback.qos.ch/manual/appenders.html#SyslogAppender)
 - [SiftingAppender](https://logback.qos.ch/manual/appenders.html#SiftingAppender)
 - [AsyncAppender](https://logback.qos.ch/manual/appenders.html#AsyncAppender)
+```xml
+<appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+    <!-- 阻塞式队列最大长度，默认：256，取值范围为正整数，队列默认实现：ArrayBlockingQueue -->
+    <queueSize>128</queueSize>
+    <!-- 丢弃阈值，默认情况下，当队列容量剩余20%时，将丢弃TRACE、DEBUG、INFO级别日志，只保留WARN和ERROR级别的日志，如果全部保留，设置为：0，其取值范围为：0 ~ queueSize -->
+    <!-- 实际存在于队列中的日志并不会丢弃，只是新进的不符合条件的日志将被丢弃，参考：ch.qos.logback.core.AsyncAppenderBase#append(E) -->
+    <!-- <discardingThreshold>0</discardingThreshold> -->
+    <!-- 最大刷新时间毫秒数，默认：1000，当Worker(AsyncAppender中的任务线程)停止时，刷新woker.join的时间(用于处理队列中剩余的数据) -->
+    <maxFlushTime>1000</maxFlushTime>
+    <!-- 永远不阻塞，默认：false，为true时表示不阻塞队列，但当队列满时，插入元素被忽略，实际造成了丢日志(经测试当写入速度远大于IO速度时，将丢失大量的日志，包含WARN、ERROR级别日志) -->
+    <!-- 反之，当队列满时，队列将阻塞，影响性能和程序响应 -->
+    <neverBlock>false</neverBlock>
+    <!-- 是否包含调用者信息，非常影响性能，默认：false -->
+    <includeCallerData>true</includeCallerData>
+    <!-- 引用的Appender，实现输出日志用，AsyncAppender仅用于代理该Appender -->
+    <appender-ref ref="FILE" />
+</appender>
+```
 - [WriteYourOwnAppender](https://logback.qos.ch/manual/appenders.html#WriteYourOwnAppender)
 
 #### Appender使用
