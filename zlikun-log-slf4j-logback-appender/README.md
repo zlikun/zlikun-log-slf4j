@@ -11,6 +11,7 @@
 
 #### Appender配置
 - [ConsoleAppender](https://logback.qos.ch/manual/appenders.html#ConsoleAppender)  
+
 ```xml
 <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- 指定输出流，默认：System.out，这里修改为：System.err，允许取值参考：ch.qos.logback.core.joran.spi.ConsoleTarget -->
@@ -24,7 +25,9 @@
     </encoder>
 </appender>
 ```
+
 - [FileAppender](https://logback.qos.ch/manual/appenders.html#FileAppender)  
+
 ```xml
 <appender name="FILE" class="ch.qos.logback.core.FileAppender">
     <!-- 设置日志文件路径(只能设置为本地文件路径) -->
@@ -48,7 +51,9 @@
 ```
 - [RollingFileAppender](https://logback.qos.ch/manual/appenders.html#RollingFileAppender)  
 输出到文件Appender配置时，需要注意：多个Appender不能指定重复文件
+
 1. [TimeBasedRollingPolicy](https://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy)
+
 ```xml
 <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <!-- 下面几项设置继承自FileAppender -->
@@ -70,7 +75,9 @@
     </encoder>
 </appender>
 ```
+
 2. [FixedWindowRollingPolicy](https://logback.qos.ch/manual/appenders.html#FixedWindowRollingPolicy)
+
 ```xml
 <appender name="ROLLING_FILE2" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>build/data/server-${byDate}.log</file>
@@ -94,7 +101,9 @@
     </encoder>
 </appender>
 ```
+
 - [DBAppender](https://logback.qos.ch/manual/appenders.html#DBAppender)
+
 ```xml
 <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
     <!-- 配套SQL脚本文件于下面目录中存放 -->
@@ -122,11 +131,13 @@
     </connectionSource>
 </appender>
 ```
+
 - [SocketAppender](https://logback.qos.ch/manual/appenders.html#SocketAppender)
 - [SMTPAppender](https://logback.qos.ch/manual/appenders.html#SMTPAppender)
 - [SyslogAppender](https://logback.qos.ch/manual/appenders.html#SyslogAppender)
 - [SiftingAppender](https://logback.qos.ch/manual/appenders.html#SiftingAppender)
 - [AsyncAppender](https://logback.qos.ch/manual/appenders.html#AsyncAppender)
+
 ```xml
 <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
     <!-- 阻塞式队列最大长度，默认：256，取值范围为正整数，队列默认实现：ArrayBlockingQueue -->
@@ -145,7 +156,9 @@
     <appender-ref ref="FILE" />
 </appender>
 ```
+
 - [WriteYourOwnAppender](https://logback.qos.ch/manual/appenders.html#WriteYourOwnAppender)
+
 ```xml
 <!-- 自定义Appender -->
 <appender name="COUNTING_STDOUT" class="com.zlikun.log.logback.CountingConsoleAppender">
