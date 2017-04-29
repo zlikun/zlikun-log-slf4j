@@ -1,0 +1,6 @@
+dependencies {
+    compile group: "ch.qos.logback", name: "logback-classic", version: "${logbackVersion}"
+    compile group: "ch.qos.logback", name: "logback-access", version: "${logbackVersion}"
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: "${servletVersion}"
+    compile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: "${jettyVersion}"
+}
