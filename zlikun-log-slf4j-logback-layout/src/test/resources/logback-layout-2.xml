@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <immediateFlush>true</immediateFlush>
+            <charset>UTF-8</charset>
+            <!-- 167 INFO [main] com.zlikun.log.LoggerTest - Hello girl ~ -->
+            <layout class="com.zlikun.log.logback.DefaultLayout" />
+        </encoder>
+    </appender>
+</included>
