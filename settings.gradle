@@ -6,4 +6,5 @@ include 'zlikun-log-slf4j-logback-encoder'
 include 'zlikun-log-slf4j-logback-layout'
 include 'zlikun-log-slf4j-logback-layout-access'
 include 'zlikun-log-slf4j-logback-filter'
+include 'zlikun-log-slf4j-logback-mdc'
 
