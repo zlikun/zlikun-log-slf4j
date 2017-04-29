@@ -12,8 +12,8 @@ MDC.put("name" ,"zlikun");
 <pattern>%d{yyyy/MM/dd HH:mm:ss} | %contextName | %t | %level | %logger | [%Xname %Xversion %source] | %msg%n</pattern>```
 
 // 输出效果，第一行是在输出之前设置了name和version属性，第二行则补充了source属性
-2017/04/29 20:10:00 | zlikun-log | main | INFO | com.zlikun.log.LoggerTest | [zlikun 1.0.0 ] | Hello Girl !
-2017/04/29 20:10:00 | zlikun-log | main | INFO | com.zlikun.log.LoggerTest | [zlikun 1.0.0 test] | Hello Boy !
+2017/04/29 20:10:00 | zlikun-log | main | INFO | com.zlikun.log.MultiThreadTest | [zlikun 1.0.0 ] | Hello Girl !
+2017/04/29 20:10:00 | zlikun-log | main | INFO | com.zlikun.log.MultiThreadTest | [zlikun 1.0.0 test] | Hello Boy !
 ```
 
 #### 源码

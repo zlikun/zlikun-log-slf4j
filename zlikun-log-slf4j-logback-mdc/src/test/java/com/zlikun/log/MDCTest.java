@@ -18,7 +18,7 @@ public class MDCTest {
 
         MDC.put("name" ,"zlikun");
 
-        Logger log = LoggerFactory.getLogger(LoggerTest.class) ;
+        Logger log = LoggerFactory.getLogger(MultiThreadTest.class) ;
 
         MDC.put("version" ,"1.0.0");
 
