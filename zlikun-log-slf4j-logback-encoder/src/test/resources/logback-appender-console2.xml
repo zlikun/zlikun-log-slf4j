@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 使用LayoutWrappingEncoder桥接Layout组件，核心代码：layout.doLayout(event); -->
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <immediateFlush>true</immediateFlush>
+            <charset>UTF-8</charset>
+            <!-- 使用TTLLLayout，仅作测试，格式：%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n -->
+            <!-- 10:02:57.019 [main] Icom.zlikun.log.Console2TeststTest - Hello Girl ~ -->
+            <layout class="ch.qos.logback.classic.layout.TTLLLayout">
+                <!-- 以下属性来自于ch.qos.logback.core.LayoutBase，这里仅作测试用 -->
+                <!-- 输出顺序：fileHeader -> presentationHeader -> 日志输出 -> presentationFooter -> fileFooter ，不知道有什么用？ -->
+                <fileHeader>HEADER:</fileHeader>
+                <fileFooter>FOOTER</fileFooter>
+                <presentationHeader>PRESENTATION_HEADER</presentationHeader>
+                <presentationFooter>PRESENTATION_FOOTER:</presentationFooter>
+            </layout>
+        </encoder>
+    </appender>
+</included>
+<!-- 输出日志效果 -->
+<!--
+
+"C:\Program Files\Java\jdk1.7.0_80\bin\java" -agentlib:jdwp=transport=dt_shmem,address=javadebug,suspend=y,server=n -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:C:\Users\zlikun\.IntelliJIdea2017.1\system\groovyHotSwap\gragent.jar -Dfile.encoding=UTF-8 -classpath "D:\Program\JetBrains\IntelliJ IDEA 2017.1\lib\idea_rt.jar;D:\Program\JetBrains\IntelliJ IDEA 2017.1\plugins\junit\lib\junit-rt.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\jfxrt.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_80\jre\lib\rt.jar;D:\Studio\intellij\zlikun-log-slf4j\zlikun-log-slf4j-logback-encoder\build\classes\test;D:\Studio\intellij\zlikun-log-slf4j\zlikun-log-slf4j-logback-encoder\build\resources\test;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.25\da76ca59f6a57ee3102f8f9bd9cee742973efa8a\slf4j-api-1.7.25.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.2.3\7c4f3c474fb2c041d8028740440937705ebb473a\logback-classic-1.2.3.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\javax.servlet\javax.servlet-api\3.1.0\3cd63d075497751784b2fa84be59432f4905bf7c\javax.servlet-api-3.1.0.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-webapp\9.2.21.v20170120\9cd7342bb63e1277c716b40697ab8cc85e3636f1\jetty-webapp-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.mockito\mockito-core\2.7.22\fcf63bc8010ca77991e3cadd8d33ad1a40603404\mockito-core-2.7.22.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-all\1.3\63a21ebc981131004ad02e0434e799fd7f3a8d5a\hamcrest-all-1.3.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.2.3\864344400c3d4d92dfeb0a305dc87d953677c03c\logback-core-1.2.3.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-xml\9.2.21.v20170120\94471301ad828b00129239dc7b8da1597a2c1cda\jetty-xml-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-servlet\9.2.21.v20170120\c4e73d8d917f397551f81e4e79fb657f00214e75\jetty-servlet-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy\1.6.11\8a8f9409e27f1d62c909c7eef2aa7b3a580b4901\byte-buddy-1.6.11.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.6.11\200d9c012befccd211ff91082a151257b1dc084\byte-buddy-agent-1.6.11.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\2.5\612ecb799912ccf77cba9b3ed8c813da086076e9\objenesis-2.5.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-util\9.2.21.v20170120\58d9c3a134dc6d6d84b555758015ab3585b88464\jetty-util-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-security\9.2.21.v20170120\ceb39cd058fa22172c6e7ef493af90891e701f23\jetty-security-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-server\9.2.21.v20170120\bdf6a2d58f878652e4b8c3af913e9c56b995e87d\jetty-server-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-http\9.2.21.v20170120\24c5a91c48cfd73b863962ec36ba4dc2bb6552ea\jetty-http-9.2.21.v20170120.jar;C:\Users\zlikun\.gradle\caches\modules-2\files-2.1\org.eclipse.jetty\jetty-io\9.2.21.v20170120\a25222b557823b59a7b6d121f951926be20cff85\jetty-io-9.2.21.v20170120.jar" com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 com.zlikun.log.LoggerTest
+Connected to the target VM, address: 'javadebug', transport: 'shared memory'
+10:30:22,524 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback-test.xml] at [file:/D:/Studio/intellij/zlikun-log-slf4j/zlikun-log-slf4j-logback-encoder/build/resources/test/logback-test.xml]
+10:30:22,617 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - Will scan for changes in [file:/D:/Studio/intellij/zlikun-log-slf4j/zlikun-log-slf4j-logback-encoder/build/resources/test/logback-test.xml]
+10:30:22,617 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - Setting ReconfigureOnChangeTask scanning period to 3 seconds
+10:30:22,619 |-INFO in ch.qos.logback.classic.joran.action.ContextNameAction - Setting logger context name as [zlikun-log]
+10:30:22,619 |-INFO in ch.qos.logback.core.joran.util.ConfigurationWatchListUtil@1d04f5f0 - Adding [file:/D:/Studio/intellij/zlikun-log-slf4j/zlikun-log-slf4j-logback-encoder/build/resources/test/logback-appender-console2.xml] to configuration watch list.
+10:30:22,621 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+10:30:22,625 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
+10:30:22,634 |-WARN in ch.qos.logback.core.encoder.LayoutWrappingEncoder@52929ed4 - As of version 1.2.0 "immediateFlush" property should be set within the enclosing Appender.
+10:30:22,635 |-WARN in ch.qos.logback.core.encoder.LayoutWrappingEncoder@52929ed4 - Please move "immediateFlush" property into the enclosing appender.
+10:30:22,642 |-WARN in ch.qos.logback.core.encoder.LayoutWrappingEncoder@52929ed4 - Setting the "immediateFlush" property of the enclosing appender to true
+HEADER:PRESENTATION_HEADER
+10:30:22,643 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
+10:30:22,643 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
+10:30:22,644 |-INFO in ch.qos.logback.core.joran.action.ShutdownHookAction - About to instantiate shutdown hook of type [ch.qos.logback.core.hook.DelayingShutdownHook]
+10:30:22,646 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+10:30:22,647 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@19e802ee - Registering current configuration as safe fallback point
+Disconnected from the target VM, address: 'javadebug', transport: 'shared memory'
+10:30:22.650 [main] INFO com.zlikun.log.LoggerTest - Hello Girl ~
+10:30:22.652 [main] WARN com.zlikun.log.LoggerTest - Hello Girl ~
+10:30:22.652 [main] ERROR com.zlikun.log.LoggerTest - Hello Girl ~
+10:30:22,654 |-INFO in ch.qos.logback.core.hook.DelayingShutdownHook@4b46f765 - Sleeping for 0 milliseconds
+10:30:22,654 |-INFO in ch.qos.logback.core.hook.DelayingShutdownHook@4b46f765 - Logback context being closed via shutdown hook
+
+Process finished with exit code 0
+PRESENTATION_FOOTER:FOOTER
+
+-->

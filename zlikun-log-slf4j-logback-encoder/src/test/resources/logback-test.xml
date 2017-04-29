@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="3 seconds">
+
+	<contextName>zlikun-log</contextName>
+
+	<!-- 动态切换两个控制台日志配置，如果都配置在一起会相互干扰(测试结论) -->
+	<!--<include resource="logback-appender-console.xml"/>-->
+	<include resource="logback-appender-console2.xml"/>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
+
+</configuration>
