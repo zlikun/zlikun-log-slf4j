@@ -1,3 +1,22 @@
+# zlikun-log-slf4j-logback-filter
+
+#### 资料
+- <https://logback.qos.ch/manual/filters.html>
+- <https://logback.qos.ch/manual/filters.html#yourOwnFilter>
+- <https://logback.qos.ch/manual/filters.html#levelFilter>
+- <https://logback.qos.ch/manual/filters.html#thresholdFilter>
+- <https://logback.qos.ch/manual/filters.html#evalutatorFilter>
+- <https://logback.qos.ch/manual/filters.html#matcher>
+- <https://logback.qos.ch/manual/filters.html#TurboFilter>
+- <https://logback.qos.ch/manual/filters.html#DuplicateMessageFilter>
+
+> `Filter`配置于`Appender`中，返回`ch.qos.logback.core.spi.FilterReply`实例，返回`DENY`、`NEUTRAL`、`ACCEPT`三个枚举值中的一个。
+- DENY，忽略剩下的过滤器，直接返回DENY，日志不会被输出
+- NEUTRAL，继续执行剩下的过滤器，由后续过滤器决定是否输出日志
+- ACCEPT，跳过剩下过滤器，直接返回ACCEPT，日志会被输出
+
+#### 示例
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="3 seconds">
 
@@ -43,3 +62,4 @@
 	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
 
 </configuration>
+```

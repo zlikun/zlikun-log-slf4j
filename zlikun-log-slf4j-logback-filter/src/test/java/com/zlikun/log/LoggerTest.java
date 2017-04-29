@@ -16,7 +16,13 @@ public class LoggerTest {
     public void logger() {
 
         Logger log = LoggerFactory.getLogger(LoggerTest.class) ;
-        log.info("Hello {} !" ,"girls");
+
+        for (int i = 0; i < 10; i++) {
+            log.debug("Hello Girl - {} !" ,i);
+            log.info("Hello Girl - {} !" ,i);
+            log.warn("Hello Girl - {} !" ,i);
+            log.error("Hello Girl - {} !" ,i);
+        }
 
     }
 
